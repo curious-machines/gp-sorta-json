@@ -48,7 +48,9 @@ function main() {
 
 function parse(source) {
     if (typeof(source) === "string" && source.length > 0) {
-        const result = Parser.parse(source);
+        const result = source.trim() === "undefined"
+            ? undefined
+            : Parser.parse(source);
 
         console.log(prettify(result));
     }
