@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+import Parser from "../lib/Parser.js";
+const {argv} = require("yargs");
+
+
+function usage() {
+    console.log(`sorta <potential-json>`);
+}
+
+
+if (argv._.length > 0) {
+    const result = Parser.parse(argv._[0]);
+
+    console.log(result);
+}
+else {
+    usage();
+    process.exit(1);
+}
