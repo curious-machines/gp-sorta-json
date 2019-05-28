@@ -1,20 +1,61 @@
 #!/usr/bin/env node
 
+import util from "util";
 import Parser from "../lib/Parser.js";
 const {argv} = require("yargs");
 
+const ttyOut = process.stdout.isTTY;
+const useInspect = "i" in argv;
 
 function usage() {
-    console.log(`sorta <potential-json>`);
+    console.log(`sorta [-i] <potential-json>
+
+    i - use util.inspect for output. Will use color unless output is being redirected
+    
+`);
 }
 
+function prettify(object) {
+    if (useInspect) {
+        const options = {depth: Infinity, colors: ttyOut};
 
-if (argv._.length > 0) {
-    const result = Parser.parse(argv._[0]);
+        return util.inspect(object, options);
+    }
+    else {
+        return JSON.stringify(object, null, 2);
+    }
+}
 
-    console.log(result);
+function main() {
+    // get source
+    if (process.stdin.isTTY) {
+        const source = argv._[0];
+
+        parse(source);
+    } else {
+        // grab data from stdin
+        let source = "";
+
+        process.stdin.on("data", chunk => {
+            source += chunk;
+        });
+
+        process.stdin.on("end", () => {
+            parse(source);
+        });
+    }
 }
-else {
-    usage();
-    process.exit(1);
+
+function parse(source) {
+    if (typeof(source) === "string" && source.length > 0) {
+        const result = Parser.parse(source);
+
+        console.log(prettify(result));
+    }
+    else {
+        usage();
+        process.exit(1);
+    }
 }
+
+main();

@@ -19,7 +19,7 @@
     "sorta": "./bin/sorta"
   },
   "scripts": {
-    "sj": "node -r esm bin/sorta $@",
+    "sj": "node -r esm bin/sorta",
     "eslint": "eslint .",
     "rollup": "npm run build-parser && rollup -c",
     "build-grammar": "node -r esm bin/make_grammar_docs.js",
