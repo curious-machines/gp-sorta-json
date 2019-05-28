@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 
-import util from "util";
-import Parser from "../lib/Parser.js";
+// import util from "util";
+// import Parser from "../lib/GeneratedParser.js";
+// import Parser from "../lib/Parser.js";
+// import {argv} from "yargs";
+
+const util = require("util");
+const {Parser} = require("../dist/index-umd.js");
 const {argv} = require("yargs");
 
 const ttyOut = process.stdout.isTTY;
