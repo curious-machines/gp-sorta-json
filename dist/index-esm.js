@@ -157,7 +157,6 @@ var parser = function () {
       switch (yystate) {
         case 1:
           return $$[$0];
-          break;
 
         case 2:
           this.$ = Array.isArray($$[$0 - 1]) ? $$[$0 - 1] : [$$[$0 - 1]];
@@ -487,7 +486,7 @@ var parser = function () {
         this.parseError = Object.getPrototypeOf(this).parseError;
       }
 
-      _token_stack: var lex = function lex() {
+       var lex = function lex() {
         var token;
         token = lexer.lex() || EOF;
 
@@ -950,59 +949,45 @@ var parser = function () {
 
           case 2:
             return 7;
-            break;
 
           case 3:
             return 8;
-            break;
 
           case 4:
             return 9;
-            break;
 
           case 5:
             return 10;
-            break;
 
           case 6:
             return 11;
-            break;
 
           case 7:
             return 23;
-            break;
 
           case 8:
             return 23;
-            break;
 
           case 9:
             return 24;
-            break;
 
           case 10:
             return 22;
-            break;
 
           case 11:
             return 6;
-            break;
 
           case 12:
             return 18;
-            break;
 
           case 13:
             return 19;
-            break;
 
           case 14:
             return 15;
-            break;
 
           case 15:
             return 16;
-            break;
         }
       },
       rules: [/^(?:\s+)/, /^(?:\/\/.*)/, /^(?:true\b)/, /^(?:false\b)/, /^(?:null\b)/, /^(?:undefined\b)/, /^(?:[-+]?(0|[1-9]\d*)(\.\d+)?)/, /^(?:"[^"\r\n]*")/, /^(?:'[^'\r\n]*')/, /^(?:[a-zA-Z_][a-zA-Z0-9_]*)/, /^(?::)/, /^(?:,)/, /^(?:{)/, /^(?:})/, /^(?:\[)/, /^(?:\])/],
@@ -1026,9 +1011,5 @@ var parser = function () {
   parser.Parser = Parser;
   return new Parser();
 }();
-
-/**
- * @module gp-sorta-json
- */
 
 export { parser as Parser };
